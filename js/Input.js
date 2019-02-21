@@ -8,15 +8,6 @@ var keyHeld_DashTimer = KEY_HELD_TIME_MAX;
 var mouseX;
 var mouseY;
 
-var keyHeld_Left = false; 
-var keyHeld_Right = false;
-var keyHeld_DashLeft = false; 
-var keyHeld_DashRight = false;
-var keyHeld_DashUp = false;
-var keyHeld_Jump = false;
-var keyHeld_Jump_Prev = false;
-var keyHeld_Run = false;
-
 var keyHeld_1 = false;
 var keyHeld_2 = false;
 var keyHeld_3 = false;
@@ -96,14 +87,6 @@ function keyDownHandler(evt) {
 
 function keyUpHandler(evt) {
 	setValuesForKey(evt, false);
-	keyHeld_Timer = KEY_HELD_TIME_MAX;
-
-	if (evt.code == "ArrowUp" ||
-		evt.code == "ArrowLeft" ||
-		evt.code == "ArrowRight") {
-		keyHeld_DashTimer = KEY_HELD_TIME_MAX;
-	}
-	
 }
 
 function mousedownHandler(evt) {
@@ -112,109 +95,6 @@ function mousedownHandler(evt) {
 }
 
 function mouseupHandler(evt) {
-
-	if (evt.which == LEFT_CLICK && mainMenuOpen) {
-		
-		if (mouseX > MAIN_MENU_CONTINUE_START_X / PIXEL_SCALE_UP&&
-			mouseX < MAIN_MENU_CONTINUE_END_X / PIXEL_SCALE_UP &&
-			mouseY > MAIN_MENU_CONTINUE_START_Y / PIXEL_SCALE_UP &&
-			mouseY < MAIN_MENU_CONTINUE_END_Y / PIXEL_SCALE_UP && 
-			areYouSureOpen == false &&
-			noSavedGame == false) {
-
-			continueSavedGame();
-			// playSound(menuSelectSound, MENU_SELECT_VOLUME);
-		}
-
-		if (mouseX > MAIN_MENU_NO_START_X / PIXEL_SCALE_UP&&
-			mouseX < MAIN_MENU_NO_END_X / PIXEL_SCALE_UP &&
-			mouseY > MAIN_MENU_NO_START_Y / PIXEL_SCALE_UP &&
-			mouseY < MAIN_MENU_NO_END_Y / PIXEL_SCALE_UP && 
-			areYouSureOpen) {
-			
-			areYouSureOpen = false;
-			// playSound(menuSelectSound, MENU_SELECT_VOLUME);
-		}
-
-		if (mouseX > MAIN_MENU_YES_START_X / PIXEL_SCALE_UP&&
-			mouseX < MAIN_MENU_YES_END_X / PIXEL_SCALE_UP &&
-			mouseY > MAIN_MENU_YES_START_Y / PIXEL_SCALE_UP &&
-			mouseY < MAIN_MENU_YES_END_Y / PIXEL_SCALE_UP &&
-			areYouSureOpen) {
-
-			startNewGame();
-			// playSound(menuSelectSound, MENU_SELECT_VOLUME);
-		}
-
-		if (mouseX > MAIN_MENU_NEW_GAME_START_X / PIXEL_SCALE_UP&&
-			mouseX < MAIN_MENU_NEW_GAME_END_X / PIXEL_SCALE_UP &&
-			mouseY > MAIN_MENU_NEW_GAME_START_Y / PIXEL_SCALE_UP &&
-			mouseY < MAIN_MENU_NEW_GAME_END_Y / PIXEL_SCALE_UP &&
-			areYouSureOpen == false) {
-
-			selectedOption = MAIN_MENU_NO;
-			areYouSureOpen = true;
-			playSound(menuSelectSound, MENU_SELECT_VOLUME);
-		}
-
-		if (mouseX > MAIN_MENU_SPEEDRUN_START_X / PIXEL_SCALE_UP&&
-			mouseX < MAIN_MENU_SPEEDRUN_END_X / PIXEL_SCALE_UP &&
-			mouseY > MAIN_MENU_SPEEDRUN_START_Y / PIXEL_SCALE_UP &&
-			mouseY < MAIN_MENU_SPEEDRUN_END_Y / PIXEL_SCALE_UP &&
-			areYouSureOpen == false) {
-
-			speedrunTimesOpen = true;
-			mainMenuOpen = false;
-			playSound(menuSelectSound, MENU_SELECT_VOLUME);
-		}
-			
-		
-	} else if (evt.which == LEFT_CLICK && speedrunTimesOpen) {
-		if (mouseX > SPEEDRUN_RESET_TIMES_START_X / PIXEL_SCALE_UP&&
-			mouseX < SPEEDRUN_RESET_TIMES_END_X / PIXEL_SCALE_UP &&
-			mouseY > SPEEDRUN_RESET_TIMES_START_Y / PIXEL_SCALE_UP &&
-			mouseY < SPEEDRUN_RESET_TIMES_END_Y / PIXEL_SCALE_UP && 
-			areYouSureOpen == false) {
-
-			selectedOption = MAIN_MENU_NO;
-			areYouSureOpen = true;
-			// playSound(menuSelectSound, MENU_SELECT_VOLUME);
-		}
-
-		if (mouseX > SPEEDRUN_BACK_TO_MAIN_MENU_START_X / PIXEL_SCALE_UP&&
-			mouseX < SPEEDRUN_BACK_TO_MAIN_MENU_END_X / PIXEL_SCALE_UP &&
-			mouseY > SPEEDRUN_BACK_TO_MAIN_MENU_START_Y / PIXEL_SCALE_UP &&
-			mouseY < SPEEDRUN_BACK_TO_MAIN_MENU_END_Y / PIXEL_SCALE_UP &&
-			areYouSureOpen == false) {
-
-			speedrunTimesOpen = false;
-			mainMenuOpen = true;
-			selectedOption = MAIN_MENU_SPEEDRUN;
-			// playSound(menuSelectSound, MENU_SELECT_VOLUME);
-		}
-
-		if (mouseX > MAIN_MENU_NO_START_X / PIXEL_SCALE_UP&&
-			mouseX < MAIN_MENU_NO_END_X / PIXEL_SCALE_UP &&
-			mouseY > MAIN_MENU_NO_START_Y / PIXEL_SCALE_UP &&
-			mouseY < MAIN_MENU_NO_END_Y / PIXEL_SCALE_UP && 
-			areYouSureOpen) {
-
-			areYouSureOpen = false;
-			selectedOption = SPEEDRUN_BACK_TO_MAIN_MENU;
-			// playSound(menuSelectSound, MENU_SELECT_VOLUME);
-		}
-
-		if (mouseX > MAIN_MENU_YES_START_X / PIXEL_SCALE_UP&&
-			mouseX < MAIN_MENU_YES_END_X / PIXEL_SCALE_UP &&
-			mouseY > MAIN_MENU_YES_START_Y / PIXEL_SCALE_UP &&
-			mouseY < MAIN_MENU_YES_END_Y / PIXEL_SCALE_UP &&
-			areYouSureOpen) {
-			
-			deleteAllSpeedRunInfo();
-			areYouSureOpen = false;
-			playSound(menuSelectSound, MENU_SELECT_VOLUME);
-		}
-	}
 
 }
 
@@ -264,28 +144,14 @@ function setValuesForKey(evt, value) {
 			keyHeld_Q = value;
 			break;
 		case "KeyW":
-			if (levelEditorEnabled == false && endingCutsceneStarted == false && currentLevel != 1) {
-				keyHeld_Jump = value;
-			}
 			keyHeld_W = value;
 			break;
 		case "KeyE":
 			keyHeld_E = value;
 			break;
 		case "KeyR":
-			if (keyHeld_Timer >= KEY_HELD_TIME_MAX) {
-				keyHeld_Timer = 0;
-				// Prevents the deathcount from increasing in realtime on the score screen
-				if (scoreScreenOpen == false) {
-					player.deathAnimationStarted = true;
-				}
-			}
 			break;
 		case "KeyT":
-			if (keyHeld_Timer >= KEY_HELD_TIME_MAX) {
-				keyHeld_Timer = 0;
-				saveLevelInSession(currentLevel);
-			}
 			break;
 		case "KeyY":
 			keyHeld_Y = value;
@@ -310,35 +176,19 @@ function setValuesForKey(evt, value) {
 			break;
 
 		case "KeyA":
-			if (levelEditorEnabled == false & endingCutsceneStarted == false) {
-				keyHeld_Left = value;
-			}
 			keyHeld_A = value;
 			break;
 		case "KeyS":
 			keyHeld_S = value;
 			break;
 		case "KeyD":
-			if (levelEditorEnabled == false && endingCutsceneStarted == false) {
-				keyHeld_Right = value;
-			}
-			keyHeld_D = value;
+			
 			break;
 		case "KeyF":
 			keyHeld_F = value;
 			break;
 		case "KeyG":
-			if (keyHeld_Timer >= KEY_HELD_TIME_MAX) {
-				keyHeld_Timer = 0;
-				gridEnabled = !gridEnabled;
-
-				if (levelEditorEnabled) {
-					console.log('Grid Enabled');
-				} else {
-					console.log('Grid Disabled');
-				}
-
-			}
+			
 			break;
 		case "KeyH":
 			keyHeld_H = value;
@@ -370,48 +220,15 @@ function setValuesForKey(evt, value) {
 			keyHeld_C = value;
 			break;
 		case "KeyV":
-			if (keyHeld_Timer >= KEY_HELD_TIME_MAX && debugMode) {
-				keyHeld_Timer = 0;
-				outputLevelToConsole();
-			}
+			
 			break;
 		case "KeyB":
-			if (keyHeld_Timer >= KEY_HELD_TIME_MAX && debugMode) {
-				keyHeld_Timer = 0;
-				levelEditorEnabled = !levelEditorEnabled;
-
-				if (levelEditorEnabled) {
-					console.log('Map Editor Enabled');
-				} else {
-					console.log('Map Editor Disabled');
-				}
-
-			}
+			
 			break;
 		case "KeyN":
-			if (keyHeld_Timer >= KEY_HELD_TIME_MAX && debugMode) {
-				keyHeld_Timer = 0;
-				helpBGEnabled = !helpBGEnabled;
-
-				if (helpBGEnabled) {
-					console.log('BG Enabled');
-				} else {
-					console.log('BG Disabled');
-				}
-
-			}
 			break;
 		case "KeyM":
-			if (keyHeld_Timer >= KEY_HELD_TIME_MAX) {
-				keyHeld_Timer = 0;
-				musicEnabled = !musicEnabled;
 
-				if (musicEnabled) {
-					console.log('music Enabled');
-				} else {
-					console.log('music Disabled');
-				}
-			}
 			break;
 		case "Comma":
 			keyHeld_Comma = value;
@@ -425,31 +242,20 @@ function setValuesForKey(evt, value) {
 
 
 		case "ArrowUp":
-			if (currentLevel > 2 && endingCutsceneStarted == false) {
-				keyHeld_DashUp = value;
-			}
-			keyHeld_ArrowUp = value;
 			break;
 		case "ArrowDown":
 			keyHeld_ArrowDown = value;
 			break;
 		case "ArrowLeft":
-			if (currentLevel > 2 && endingCutsceneStarted == false) {
-				keyHeld_DashLeft = value;
-			}
 			keyHeld_ArrowLeft = value;
 			break;
 		case "ArrowRight":
-			if (currentLevel > 2 && endingCutsceneStarted == false) {
-				keyHeld_DashRight = value;
-			}
 			keyHeld_ArrowRight = value;
 			break;
 		case "Enter":
 			keyHeld_Enter = value;
 			break;
 		case "Space":
-			// keyHeld_Jump = value; // I honestly feel that the game feel sucks if the player uses space, therefore i'm not even allowing it
 			keyHeld_Space = value;
 			break;
 		case "Delete":
@@ -515,7 +321,7 @@ function setValuesForKey(evt, value) {
 function mouseMoveHandler(evt) {
 	var rect = canvas.getBoundingClientRect();
 
-	mouseX = (evt.clientX - rect.left) / PIXEL_SCALE_UP;
-	mouseY = (evt.clientY - rect.top) / PIXEL_SCALE_UP;
+	mouseX = (evt.clientX - rect.left);
+	mouseY = (evt.clientY - rect.top);
 
 }
