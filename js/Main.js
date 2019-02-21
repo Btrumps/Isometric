@@ -5,8 +5,7 @@ const FPS = 30;
 var canvas, canvasContext;
 
 window.onload = function() {
-	canvas = document.createElement('canvas');
-
+	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
 
 	setInterval(updateAll, 1000/FPS);
@@ -16,7 +15,6 @@ window.onload = function() {
 	canvas.addEventListener('mousedown', mousedownHandler);
 	canvas.addEventListener('mouseup', mouseupHandler);
 	canvas.addEventListener('mousemove', mouseMoveHandler);
-
 }
 
 function updateAll() {
@@ -29,5 +27,5 @@ function moveAll() {
 }
 
 function drawAll() {
-	colorRect(0,0, canvas.width,canvas.height, 'red');
+	colorRect(0,0, canvas.width,canvas.height, 'black');
 }
