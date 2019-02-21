@@ -8,13 +8,17 @@ window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
 
-	setInterval(updateAll, 1000/FPS);
+	loadImages();
+}
 
+function imagesDoneLoadingSoStartGame() {
 	document.addEventListener('keydown', keyDownHandler);
 	document.addEventListener('keyup', keyUpHandler);
 	canvas.addEventListener('mousedown', mousedownHandler);
 	canvas.addEventListener('mouseup', mouseupHandler);
 	canvas.addEventListener('mousemove', mouseMoveHandler);
+
+	setInterval(updateAll, 1000/FPS);
 }
 
 function updateAll() {
@@ -28,4 +32,6 @@ function moveAll() {
 
 function drawAll() {
 	colorRect(0,0, canvas.width,canvas.height, 'black');
+	drawImage(starterTile, mouseX, mouseY);
 }
+

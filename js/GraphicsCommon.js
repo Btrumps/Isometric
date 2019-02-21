@@ -15,7 +15,11 @@ function coloredOutlineRectCornerToCorner (corner1X, corner1Y, corner2X, corner2
 }
 
 function colorText (showWords, textX, textY, fillColor, fontName) {
-	scaledContext.font = fontName;
-	scaledContext.fillStyle = fillColor;
-	scaledContext.fillText(showWords, textX, textY);
+	canvasContext.font = fontName;
+	canvasContext.fillStyle = fillColor;
+	canvasContext.fillText(showWords, textX, textY);
+}
+
+function drawImage (whichImage, atX, atY) {
+	canvasContext.drawImage(whichImage, atX, atY);
 }
