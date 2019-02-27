@@ -1,5 +1,3 @@
-const TILE_WIDTH = 5;
-const TILE_HEIGHT= 8;
 
 function colRowToArrayIndex(col, row) {
 	return col + (row * LEVEL_COLS);

@@ -1,6 +1,6 @@
 var picsToLoad = 0;
 
-var starterTile = document.createElement("img");
+var grassTile = document.createElement("img");
 
 function countLoadedImagesAndLaunchIfReady() {
 	picsToLoad--;
@@ -16,7 +16,7 @@ function beginLoadingImage(imgVar, fileName) {
 
 function loadImages() {
 	var imageList = [
-		{varName: starterTile, theFile: "./images/starter_tile.png"}
+		{varName: grassTile, theFile: "./images/starter_tile.png"}
 		];
 
 	picsToLoad = imageList.length;
