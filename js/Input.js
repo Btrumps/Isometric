@@ -7,6 +7,7 @@ var keyHeld_DashTimer = KEY_HELD_TIME_MAX;
 
 var mouseX;
 var mouseY;
+var selectedMouseIndex = -1;
 
 var keyHeld_1 = false;
 var keyHeld_2 = false;
