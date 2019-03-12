@@ -91,9 +91,11 @@ function keyUpHandler(evt) {
 }
 
 function mousedownHandler(evt) {
-	
-
+	ballX = screenToWorldX(mouseX, mouseY);
+	ballY = screenToWorldY(mouseX, mouseY);
+	console.log('x: ' + ballX + ', y: ' + ballY);
 }
+
 
 function mouseupHandler(evt) {
 

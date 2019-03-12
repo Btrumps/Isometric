@@ -3,7 +3,7 @@ const TILE_HEIGHT = 40;
 const LEVEL_COLS = 10;
 const LEVEL_ROWS = 10;
 
-const GRID_DIM = 100; // game size for tile
+const GRID_DIM = 60; // game size for tile
 
 
 var levelGrid = [0,0,0,0,0,0,0,0,0,0,
@@ -43,9 +43,9 @@ function drawLevel() {
 		}
 	}
 	colorText(selectedMouseIndex, 25, 25, 'yellow');
-	var testIsoX = pixelToIsoX(mouseX, mouseY);
-	var testIsoY = pixelToIsoY(mouseX, mouseY);
-	colorRect(testIsoX, testIsoY, 2, 2, 'red');
+	// var testIsoX = pixelToIsoX(mouseX, mouseY);
+	// var testIsoY = pixelToIsoY(mouseX, mouseY);
+	// colorRect(testIsoX, testIsoY, 2, 2, 'red');
 }
 
 function tileCoordToIsoX(col, row) {
@@ -57,9 +57,22 @@ function tileCoordToIsoY(col, row) {
 }
 
 function pixelToIsoX(x, y) {
-	return (x / GRID_DIM)  * (TILE_WIDTH / 2) - ((y / GRID_DIM) * (TILE_WIDTH / 2)) + camPanX + (TILE_WIDTH / 2);
+	return (x / GRID_DIM)  * (TILE_WIDTH / 2) - ((y / GRID_DIM) * (TILE_WIDTH / 2)) + camPanX + (TILE_WIDTH / 2); // half a tile at the end to align to top center of tile
 }
 
 function pixelToIsoY(x, y) {
 	return (y / GRID_DIM) * (TILE_HEIGHT / 2) + ((x / GRID_DIM) * (TILE_HEIGHT / 2)) + camPanY;
 }
+
+function screenToWorldX(x, y) {
+	var offsetX = (x - camPanX - (TILE_WIDTH / 2)) / 2;
+	var offsetY = (y - camPanY);
+	return ((offsetX / (TILE_WIDTH / 2)) * GRID_DIM) + ((offsetY / (TILE_WIDTH / 2)) * GRID_DIM);
+}
+
+function screenToWorldY(x, y) {
+	var offsetX = (x - camPanX - (TILE_WIDTH / 2)) / 2;
+	var offsetY = (y - camPanY);
+	return ((offsetY / (TILE_HEIGHT / 2)) * GRID_DIM - ((offsetX / (TILE_HEIGHT / 2)) * GRID_DIM)) / 2;
+}
+

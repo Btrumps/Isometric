@@ -4,10 +4,10 @@ const FPS = 30;
 
 var canvas, canvasContext;
 
-var ballX = 120;
-var ballY = 100;
-var ballXV = 4;
-var ballYV = 2;
+var ballX = 2;
+var ballY = 10;
+var ballXV = 5;
+var ballYV = 4;
 
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
@@ -39,6 +39,7 @@ function drawAll() {
 	colorRect(0,0, canvas.width,canvas.height, 'black');
 	drawLevel();
 	colorRect(pixelToIsoX(ballX, ballY), pixelToIsoY(ballX, ballY), 5,5, 'red');
+	colorRect(ballX, ballY, 5, 5, 'yellow');
 }
 
 function ballMove() {
