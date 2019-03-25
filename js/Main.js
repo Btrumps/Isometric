@@ -1,3 +1,14 @@
+/*
+-TODO
+
+Add enemy
+Add unwalkable tiles
+Add basic attack system
+Add xp system
+Add UI for HP and Attack power
+
+*/
+
 const CANVAS_WIDTH = 512;
 const CANVAS_HEIGHT = 448;
 const FPS = 30;

@@ -20,9 +20,40 @@ function playerClass() {
 		
 
 		if (dist(this.x,this.y, this.goalX,this.goalY) > WALK_SPEED) {
+			/*
 			var angTo = Math.atan2(this.goalY - this.y, this.goalX - this.x);
 			this.velX = Math.cos(angTo) * WALK_SPEED;
 			this.velY = Math.sin(angTo) * WALK_SPEED;
+			*/
+			if (this.x < this.goalX - WALK_SPEED) {
+				this.velX = WALK_SPEED;
+			} else if (this.x > this.goalX + WALK_SPEED) {
+				this.velX = -WALK_SPEED;
+			} else {
+				this.velX = 0;
+				this.x = this.goalX;
+			}
+
+			if (this.y < this.goalY - WALK_SPEED) {
+				this.velY = WALK_SPEED;
+			} else if (this.y > this.goalY + WALK_SPEED) {
+				this.velY = -WALK_SPEED;
+			} else {
+				this.velY = 0;
+				this.y = this.goalY;
+			}
+
+			var speedNow = dist(0,0, this.velX,this.velY);
+			
+			if (speedNow > 0) {
+				this.velX = Math.abs(this.velX / speedNow) * this.velX;
+				this.velY = Math.abs(this.velY / speedNow) * this.velY;
+				var speedNow = dist(0,0, this.velX,this.velY);
+				console.log(speedNow);
+			}
+			 
+
+
 		} else {
 			this.velX = 0;
 			this.velY = 0;

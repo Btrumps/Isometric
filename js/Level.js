@@ -39,12 +39,9 @@ function drawLevel() {
 
 				case LEVEL_GRASS:
 					drawImage(grassTile, tileX, tileY);
-					colorText(eachCol + ', ' + eachRow, tileX + (TILE_WIDTH / 2), tileY + (TILE_HEIGHT / 2), 'red');
+					// colorText(eachCol + ', ' + eachRow, tileX + (TILE_WIDTH / 2), tileY + (TILE_HEIGHT / 2), 'red');
 					break;
 
-			}
-			if (levelIndex == selectedMouseIndex) {
-				colorRect(tileX + (TILE_WIDTH / 2), tileY + (TILE_HEIGHT / 2), 5,5, 'yellow');
 			}
 		}
 	}

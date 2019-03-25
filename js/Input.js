@@ -99,30 +99,30 @@ function mousedownHandler(evt) {
 
 	selectedMouseIndex = colRowToArrayIndex(mouseWorldCol, mouseWorldRow);
 
+	if (mouseWorldCol >= LEVEL_COLS) {
+		mouseWorldCol = LEVEL_COLS - 1;
+	}
+
+	if (mouseWorldCol < 0) {
+		mouseWorldCol = 0;
+	}
+
+	if (mouseWorldRow >= LEVEL_ROWS) {
+		mouseWorldRow = LEVEL_ROWS - 1;
+	}
+
+	if (mouseWorldRow < 0) {
+		mouseWorldRow = 0;
+	}
+
 	console.log(mouseWorldX + ', ' +
 				mouseWorldY + ', ' +
 				mouseWorldCol + ', ' +
 				mouseWorldRow + ', ' +
 				selectedMouseIndex);
 
-	player.goalX = mouseWorldX;
-	player.goalY = mouseWorldY;
-
-	if (player.goalX > BOUND_X) {
-		player.goalX = BOUND_X;
-	}
-
-	if (player.goalX < 0) {
-		player.goalX = 0;
-	}
-
-	if (player.goalY > BOUND_Y) {
-		player.goalY = BOUND_Y;
-	}
-
-	if (player.goalY < 0) {
-		player.goalY = 0;
-	}
+	player.goalX = mouseWorldCol * GRID_DIM + (GRID_DIM / 2);
+	player.goalY = mouseWorldRow * GRID_DIM + (GRID_DIM / 2);
 }
 
 
