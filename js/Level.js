@@ -3,7 +3,10 @@ const TILE_HEIGHT = 40;
 const LEVEL_COLS = 10;
 const LEVEL_ROWS = 10;
 
-const GRID_DIM = 60; // game size for tile
+const GRID_DIM = 100; // game size for tile
+
+const BOUND_X = LEVEL_COLS * GRID_DIM;
+const BOUND_Y = LEVEL_ROWS * GRID_DIM;
 
 
 var levelGrid = [0,0,0,0,0,0,0,0,0,0,
@@ -39,6 +42,9 @@ function drawLevel() {
 					colorText(eachCol + ', ' + eachRow, tileX + (TILE_WIDTH / 2), tileY + (TILE_HEIGHT / 2), 'red');
 					break;
 
+			}
+			if (levelIndex == selectedMouseIndex) {
+				colorRect(tileX + (TILE_WIDTH / 2), tileY + (TILE_HEIGHT / 2), 5,5, 'yellow');
 			}
 		}
 	}

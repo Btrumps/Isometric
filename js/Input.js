@@ -7,7 +7,7 @@ var keyHeld_DashTimer = KEY_HELD_TIME_MAX;
 
 var mouseX;
 var mouseY;
-var selectedMouseIndex = -1;
+var selectedMouseIndex = 7;
 
 var keyHeld_1 = false;
 var keyHeld_2 = false;
@@ -91,9 +91,38 @@ function keyUpHandler(evt) {
 }
 
 function mousedownHandler(evt) {
-	ballX = screenToWorldX(mouseX, mouseY);
-	ballY = screenToWorldY(mouseX, mouseY);
-	console.log('x: ' + ballX + ', y: ' + ballY);
+	var mouseWorldX = screenToWorldX(mouseX, mouseY);
+	var mouseWorldY = screenToWorldY(mouseX, mouseY);
+	
+	var mouseWorldCol = Math.floor(mouseWorldX / GRID_DIM);
+	var mouseWorldRow = Math.floor(mouseWorldY / GRID_DIM);
+
+	selectedMouseIndex = colRowToArrayIndex(mouseWorldCol, mouseWorldRow);
+
+	console.log(mouseWorldX + ', ' +
+				mouseWorldY + ', ' +
+				mouseWorldCol + ', ' +
+				mouseWorldRow + ', ' +
+				selectedMouseIndex);
+
+	player.goalX = mouseWorldX;
+	player.goalY = mouseWorldY;
+
+	if (player.goalX > BOUND_X) {
+		player.goalX = BOUND_X;
+	}
+
+	if (player.goalX < 0) {
+		player.goalX = 0;
+	}
+
+	if (player.goalY > BOUND_Y) {
+		player.goalY = BOUND_Y;
+	}
+
+	if (player.goalY < 0) {
+		player.goalY = 0;
+	}
 }
 
 
